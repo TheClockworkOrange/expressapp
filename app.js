@@ -2,7 +2,9 @@ var createError = require('http-errors');
 var express = require('express');
 //Set up mongoose connection
 var mongoose = require('mongoose');
-var mongoDB = 'mongodb+srv://dbUser:Roojred1!@cluster0-ioqjd.mongodb.net/test?retryWrites=true&w=majority';
+var dev_db_url = 'mongodb+srv://dbUser:Roojred1!@cluster0-mbdj7.mongodb.net/local_library?retryWrites=true';
+var mongoDB = process.env.MONGODB_URI || dev_db_url;
+
 mongoose.connect(mongoDB, { useNewUrlParser: true });
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
